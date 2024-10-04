@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Links app</title>
+        <title>{{config('app.name')}}</title>
 
         <link rel="apple-touch-icon" sizes="57x57" href="{{asset('icon/apple-icon-57x57.png')}}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{asset('icon/apple-icon-60x60.png')}}">
@@ -94,7 +94,7 @@
             </nav>
             <header class="py-10">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <h1 class="text-3xl font-bold tracking-tight text-white">{{$title ?? 'Links app'}}</h1>
+                    <h1 class="text-3xl font-bold tracking-tight text-white">{{$title ?? config('app.name')}}</h1>
                 </div>
             </header>
         </div>
