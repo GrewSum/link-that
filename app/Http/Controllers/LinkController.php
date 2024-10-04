@@ -13,6 +13,16 @@ class LinkController extends Controller
 {
     public function index(Request $request)
     {
+        $filter_params = [];
+
+        if ($request->has('search')) {
+            $filter_params['search'] = $request->get('search');
+        }
+
+        if ($request->has('tag')) {
+            $filter_params['tag'] = $request->get('tag');
+        }
+
         return view('links.index', [
             'links' => Link::query()
                 ->where(function (Builder $query) use ($request) {
@@ -23,7 +33,7 @@ class LinkController extends Controller
                         $query
                             ->where(DB::raw('LOWER(title)'), 'like', "%{$search}%")
                             ->orWhere(DB::raw('LOWER(description)'), 'like', "%{$search}%")
-                            ->orWhere('url', 'like', "%{$search}%");
+                            ->orWhere(DB::raw('LOWER(url)'), 'like', "%{$search}%");
                     }
 
                     if ($request->has('tag')) {
@@ -32,7 +42,8 @@ class LinkController extends Controller
 
                 })
                 ->orderBy('added_at', 'desc')
-                ->paginate(25),
+                ->paginate(25)
+                ->withPath(sprintf('%s?%s', route('links.index'), http_build_query($filter_params))),
             'tags' => Tag::query()
                 ->orderBy('name')
                 ->withCount('links')
