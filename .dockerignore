@@ -3,3 +3,6 @@ frankenphp
 .env
 node_modules/
 vendor/
+README.md
+LICENSE
+docs/

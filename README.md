@@ -2,6 +2,8 @@
 
 Link that! is a very simple self-hosted bookmark manager. It is written using [Laravel](https://laravel.com/) and [TailwindCSS](https://tailwindcss.com/). By default, the data is stored in a local SQLite database, but it can be easily changed to use a [remote database](https://laravel.com/docs/11.x/database).
 
+![Screenshot of Link That!](./docs/screenshot.png)
+
 ## Features
 
 - Create, edit and delete bookmarks
