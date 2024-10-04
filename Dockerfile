@@ -23,7 +23,7 @@ RUN npm install \
 
 RUN APP_ENV=ci composer install --optimize-autoloader --no-dev
 
-FROM dunglas/frankenphp
+FROM dunglas/frankenphp:php8.3-alpine
 
 ENV SERVER_NAME=:80
 
