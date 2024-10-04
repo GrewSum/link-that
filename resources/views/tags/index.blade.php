@@ -2,56 +2,59 @@
 
 @section('content')
 
-    <div>
-        <div class="sm:flex sm:items-center">
-            <div class="sm:flex-auto">
-                <h1 class="text-base font-semibold leading-6 text-gray-900">Tags</h1>
-                <p class="mt-2 text-sm text-gray-700">A list of tags to assign to links</p>
-            </div>
-            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                <a href="{{route('tags.create')}}" class="block rounded-md bg-emerald-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">Add</a>
-            </div>
+    <div class="sm:flex sm:items-center">
+        <div class="sm:flex-auto">
+            <h1 class="text-base font-semibold leading-6 text-gray-900">{{__('tags.index.page_title')}}</h1>
+            <p class="mt-2 text-sm text-gray-700">{{__('tags.index.page_description')}}</p>
         </div>
-        <div class="mt-8 flow-root">
-            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="inline-block w-full py-2 sm:px-6 lg:px-8">
-                    <table class="w-full divide-y divide-gray-300">
-                        <thead>
-                        <tr>
-                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
-                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                <span class="sr-only">Edit</span>
-                            </th>
-                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                <span class="sr-only">Delete</span>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200">
-                        @foreach($tags as $tag)
-                        <tr>
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 flex justify-between">
-                                @include('blocks.tag', ['tag' => $tag])
-                                <span>({{$tag->links_count}} links)</span>
-                            </td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                <a href="{{route('tags.edit', $tag->id)}}" class="text-emerald-600 hover:text-emerald-900">Edit<span class="sr-only">, {{$tag->name}}</span></a>
-                            </td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 table-cell">
-                                <form action="{{route('tags.destroy', $tag->id)}}" method="POST" class="w-[50px]">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="block px-3 py-1 text-sm leading-6 text-emerald-600" role="menuitem" tabindex="-1" id="options-menu-0-item-2">Delete<span class="sr-only">, {{$tag->name}}</span></button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+            <a href="{{route('tags.create')}}"
+               class="block rounded-md bg-emerald-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">{{__('tags.index.add_button')}}</a>
         </div>
     </div>
+
+    <ul role="list" class="divide-y divide-gray-100 mt-4 flow-root mb-8">
+
+        @foreach($tags as $tag)
+            <li class="flex items-center justify-between gap-x-6 py-5">
+                <div class="min-w-0">
+                    <div class="flex items-center space-x-2">
+                        @include('blocks.tag', ['tag' => $tag])
+                        <span class="text-sm">{{__('tags.index.links_count', ['count' => $tag->links_count])}}</span>
+                    </div>
+                </div>
+                <div class="flex flex-none items-center gap-x-4">
+                    <div class="relative flex-none" x-data="{open: false}" @click.away="open = false">
+                        <button type="button" @click="open = !open" class="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900" id="options-menu-0-button" aria-expanded="false" aria-haspopup="true">
+                            <span class="sr-only">{{__('links.index.open_options')}}</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z" />
+                            </svg>
+                        </button>
+
+                        <div
+                            x-show="open"
+                            x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            x-cloak
+                            class="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-0-button" tabindex="-1">
+                            <a href="{{route('tags.edit', $tag->id)}}" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="options-menu-0-item-0">{{__('tags.index.edit_button')}}<span class="sr-only">, {{$tag->name}}</span></a>
+
+                            <form action="{{route('tags.destroy', $tag->id)}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="options-menu-0-item-2">{{__('tags.index.delete_button')}}<span class="sr-only">, {{$tag->name}}</span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        @endforeach
+    </ul>
 
     {!! $tags->links() !!}
 

@@ -17,8 +17,10 @@
                     </div>
                 </div>
                 <div class="mt-6 flex space-x-2">
-                    <a href="{{$link->url}}" class="rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">View link</a>
-                    <a href="{{route('links.edit', $link->id)}}" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Edit</a>
+                    <a href="{{$link->url}}"
+                       class="rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">{{__('links.show.visit')}}</a>
+                    <a href="{{route('links.edit', $link->id)}}"
+                       class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">{{__('links.show.edit')}}</a>
                 </div>
             </div>
         </div>

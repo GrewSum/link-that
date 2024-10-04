@@ -37,15 +37,15 @@
                             <div class="hidden lg:block">
                                 <div class="flex space-x-4">
                                     <a href="{{route('links.index')}}"
-                                       class="{{str_starts_with(request()->route()->getName(), 'links') ? 'bg-emerald-700 text-white' : 'text-white hover:bg-emerald-500 hover:bg-opacity-75'}} rounded-md py-2 px-3 text-sm font-medium" aria-current="page">Links</a>
+                                       class="{{str_starts_with(request()->route()->getName(), 'links') ? 'bg-emerald-700 text-white' : 'text-white hover:bg-emerald-500 hover:bg-opacity-75'}} rounded-md py-2 px-3 text-sm font-medium" aria-current="page">{{__('menu.links')}}</a>
                                     <a href="{{route('tags.index')}}"
-                                       class="{{str_starts_with(request()->route()->getName(), 'tags') ? 'bg-emerald-700 text-white' : 'text-white hover:bg-emerald-500 hover:bg-opacity-75'}} rounded-md py-2 px-3 text-sm font-medium">Tags</a>
+                                       class="{{str_starts_with(request()->route()->getName(), 'tags') ? 'bg-emerald-700 text-white' : 'text-white hover:bg-emerald-500 hover:bg-opacity-75'}} rounded-md py-2 px-3 text-sm font-medium">{{__('menu.tags')}}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
                             <form class="w-full max-w-lg lg:max-w-xs" action="{{route('links.index')}}" method="GET">
-                                <label for="search" class="sr-only">Search</label>
+                                <label for="search" class="sr-only">{{__('menu.search')}}</label>
                                 <div class="relative text-gray-400 focus-within:text-gray-600">
                                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -54,7 +54,7 @@
                                     </div>
                                     <input id="search"
                                            class="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-600 sm:text-sm sm:leading-6"
-                                           placeholder="Search"
+                                           placeholder="{{__('menu.search')}}"
                                            type="search"
                                            value="{{request()->get('search')}}"
                                            name="search">
@@ -71,9 +71,13 @@
                             </form>
                         </div>
                         <div class="flex lg:hidden">
-                            <button type="button" @click="open = !open" class="relative inline-flex items-center justify-center rounded-md bg-emerald-600 p-2 text-emerald-200 hover:bg-emerald-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-600" aria-controls="mobile-menu" aria-expanded="false">
+                            <button type="button"
+                                    @click="open = !open"
+                                    class="relative inline-flex items-center justify-center rounded-md bg-emerald-600 p-2 text-emerald-200 hover:bg-emerald-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-600"
+                                    aria-controls="mobile-menu"
+                                    aria-expanded="false">
                                 <span class="absolute -inset-0.5"></span>
-                                <span class="sr-only">Open main menu</span>
+                                <span class="sr-only">{{__('menu.open')}}</span>
                                 <svg :class="open ? 'hidden' : 'block'" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                 </svg>
@@ -87,8 +91,8 @@
 
                 <div x-show="open" class="lg:hidden" id="mobile-menu" x-cloak>
                     <div class="space-y-1 px-2 pb-3 pt-2">
-                        <a href="{{route('links.index')}}" class="{{str_starts_with(request()->route()->getName(), 'links') ? 'bg-emerald-700 text-white' : 'text-white hover:bg-emerald-500 hover:bg-opacity-75'}} block rounded-md py-2 px-3 text-base font-medium" aria-current="page">Links</a>
-                        <a href="{{route('tags.index')}}" class="{{str_starts_with(request()->route()->getName(), 'tags') ? 'bg-emerald-700 text-white' : 'text-white hover:bg-emerald-500 hover:bg-opacity-75'}} block rounded-md py-2 px-3 text-base font-medium">Tags</a>
+                        <a href="{{route('links.index')}}" class="{{str_starts_with(request()->route()->getName(), 'links') ? 'bg-emerald-700 text-white' : 'text-white hover:bg-emerald-500 hover:bg-opacity-75'}} block rounded-md py-2 px-3 text-base font-medium" aria-current="page">{{__('menu.links')}}</a>
+                        <a href="{{route('tags.index')}}" class="{{str_starts_with(request()->route()->getName(), 'tags') ? 'bg-emerald-700 text-white' : 'text-white hover:bg-emerald-500 hover:bg-opacity-75'}} block rounded-md py-2 px-3 text-base font-medium">{{__('menu.tags')}}</a>
                     </div>
                 </div>
             </nav>

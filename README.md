@@ -7,6 +7,7 @@ Link that! is a very simple self-hosted bookmark manager. It is written using [L
 - Create, edit and delete bookmarks
 - Search bookmarks
 - Manage tags
+- Multilingual support (English and Dutch, contributions are welcome!)
 
 ## Installation
 
@@ -43,6 +44,8 @@ volumes:
 ```
 
 If you're planning to use a remote database, you can configure the database connection using the steps in the [Laravel documentation](https://laravel.com/docs/11.x/database).
+
+If you want to select another UI language, you can do so by setting the `APP_LOCALE` environment variable to the locale you want to use. For example: `APP_LOCALE=nl` for Dutch.
 
 ## Why another bookmark manager?
 
