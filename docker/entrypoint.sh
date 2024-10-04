@@ -7,4 +7,4 @@ php artisan route:cache
 php artisan migrate --force
 
 # This will exec the CMD from your Dockerfile
-docker-php-entrypoint "$@"
+exec /usr/local/bin/docker-php-entrypoint "$@"
