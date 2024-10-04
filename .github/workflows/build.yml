@@ -41,6 +41,7 @@ jobs:
           context: .
           pull: true
           push: true
+          platforms: linux/amd64,linux/arm64/v8
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:v${{ steps.get-latest-tag.outputs.tag }}
           cache-to: type=inline
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:v${{ steps.get-latest-tag.outputs.tag }},${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
