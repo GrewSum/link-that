@@ -1,10 +1,7 @@
 FROM php:8.3-cli AS build-env
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get install -y nodejs libxslt-dev libzip-dev libpng-dev --no-install-recommends \
-    && echo "Node: $(node -v), path: $(which node)"  \
-    && echo "NPM: $(npm -v), path: $(which npm)" \
-    && npm install -g yarn
+RUN apt-get install -y nodejs libzip-dev --no-install-recommends
 
 COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
 
