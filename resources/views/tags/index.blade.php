@@ -15,7 +15,7 @@
 
     <ul role="list" class="divide-y divide-gray-100 mt-4 flow-root mb-8">
 
-        @foreach($tags as $tag)
+        @forelse($tags as $tag)
             <li class="flex items-center justify-between gap-x-6 py-5">
                 <div class="min-w-0">
                     <div class="flex items-center space-x-2">
@@ -53,7 +53,24 @@
                     </div>
                 </div>
             </li>
-        @endforeach
+        @empty
+            <div class="text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                </svg>
+                <h3 class="mt-2 text-sm font-semibold text-gray-900">{{__('tags.index.empty_title')}}</h3>
+                <p class="mt-1 text-sm text-gray-500">{{__('tags.index.empty_description')}}</p>
+                <div class="mt-6">
+                    <a href="{{route('tags.create')}}"
+                       class="inline-flex items-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
+                        <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                            <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                        </svg>
+                        {{__('tags.index.empty_add_button')}}
+                    </a>
+                </div>
+            </div>
+        @endforelse
     </ul>
 
     {!! $tags->links() !!}

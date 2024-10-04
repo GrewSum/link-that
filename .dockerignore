@@ -1,4 +1,4 @@
-database/database.sqlite
+database/database-back.sqlite
 frankenphp
 .env
 node_modules/
