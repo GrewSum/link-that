@@ -1,4 +1,4 @@
-FROM php:8.3-cli as build-env
+FROM php:8.3-cli AS build-env
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs libxslt-dev libzip-dev libpng-dev --no-install-recommends \
@@ -17,7 +17,7 @@ USER www
 COPY --chown=www:www . /app
 WORKDIR /app
 
-RUN npm install \
+RUN npm install --no-audit --no-fund \
     && npm run build \
     && rm -rf node_modules
 
