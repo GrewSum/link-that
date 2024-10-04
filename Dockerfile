@@ -8,6 +8,8 @@ RUN apt-get install -y nodejs libxslt-dev libzip-dev libpng-dev --no-install-rec
 
 COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
 
+RUN docker-php-ext-install zip
+
 RUN groupadd -g 1000 www && useradd -m -u 1000 -g www -s /bin/sh www
 
 USER www
@@ -16,7 +18,7 @@ COPY --chown=www:www . /app
 WORKDIR /app
 
 RUN npm install \
-    && npm run prod \
+    && npm run build \
     && rm -rf node_modules
 
 RUN APP_ENV=ci composer install --optimize-autoloader --no-dev

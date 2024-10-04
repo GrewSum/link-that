@@ -2,3 +2,4 @@ database/database.sqlite
 frankenphp
 .env
 node_modules/
+vendor/
