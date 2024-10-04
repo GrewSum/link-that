@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -60,14 +61,22 @@ class LinkController extends Controller
             'tags' => '',
         ]);
 
-        $link = Link::create([
-            'title' => $validated['title'],
-            'url' => $validated['url'],
-            'description' => $validated['description'],
-            'added_at' => $validated['added_at'],
-        ]);
+        try {
+            $link = Link::create([
+                'title' => $validated['title'],
+                'url' => $validated['url'],
+                'description' => $validated['description'],
+                'added_at' => $validated['added_at'],
+            ]);
+        } catch (UniqueConstraintViolationException $exception) {
+            return redirect()
+                ->back()
+                ->withInput($request->only('title', 'url', 'description', 'added_at'))
+                ->with('alert-danger', 'This link has already been bookmarked!');
+        }
 
-        $link->tags()->sync($validated['tags']);
+
+        $link->tags()->sync($validated['tags'] ?? []);
 
         return redirect()
             ->route('links.index')

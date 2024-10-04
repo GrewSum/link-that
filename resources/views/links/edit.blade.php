@@ -19,7 +19,7 @@
                                        name="title"
                                        id="title"
                                        class="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                       value="{{$link->title}}">
+                                       value="{{old('title', $link->title)}}">
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                                        name="url"
                                        id="url"
                                        class="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                       value="{{$link->url}}">
+                                       value="{{old('url', $link->url)}}">
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                 name="description"
                                 rows="3"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
-                            >{{$link->description}}</textarea>
+                            >{{old('description', $link->description)}}</textarea>
                         </div>
                         <p class="mt-3 text-sm leading-6 text-gray-600">Why is it interesting? What did you learn?</p>
                     </div>
