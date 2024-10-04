@@ -42,7 +42,7 @@ jobs:
             type=raw,enable=true,priority=200,prefix=v,value=${{ steps.get-latest-tag.outputs.tag }}
 
       - name: Build and push App image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           pull: true
