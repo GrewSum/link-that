@@ -8,7 +8,7 @@ php artisan route:cache
 php artisan migrate --force
 
 if [ "${1#-}" != "$1" ]; then
-	set -- php-fpm "$@"
+	set -- frankenphp run "$@"
 fi
 
 exec "$@"
