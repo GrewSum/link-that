@@ -2,12 +2,8 @@
 set -e
 
 FILE=database/database.sqlite
-if [ -d "$FILE" ]; then
-    # Remove the database file if it's a directory
-    rm -rf "$FILE"
-fi
 if [ ! -f "$FILE" ]; then
-    # Create the database file if it doesn't exist
+    echo "No database file found. Creating one..."
     touch "$FILE"
 fi
 
