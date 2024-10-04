@@ -125,13 +125,17 @@
         @foreach($links as $link)
         <li class="flex items-center justify-between gap-x-6 py-5">
             <div class="min-w-0">
-                <div class="flex items-start gap-x-3">
+                <div class="flex flex-col md:flex-row items-start gap-x-3">
                     <a href="{{route('links.show', $link->id)}}" class="text-sm font-semibold leading-6 text-gray-900 hover:underline">
                         {{$link->title}}
                     </a>
-                    @foreach($link->tags as $tag)
-                        @include('blocks.tag', ['tag' => $tag])
-                    @endforeach
+                    @if($link->tags->count() > 0)
+                        <div class="my-1 md:my-0 flex-wrap">
+                            @foreach($link->tags as $tag)
+                                @include('blocks.tag', ['tag' => $tag])
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
                 <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
                     <p class="whitespace-nowrap">Added on <time datetime="{{$link->added_at->toDateTimeString()}}Z">{{$link->added_at->format('d-m-Y')}}</time></p>
