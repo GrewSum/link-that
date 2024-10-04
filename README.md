@@ -10,10 +10,12 @@ Link that! is a very simple self-hosted bookmark manager. It is written using [L
 - Search bookmarks
 - Manage tags
 - Multilingual support (English and Dutch, contributions are welcome!)
+- Deploy on a Raspberry Pi (ARM64 support) or any other server (AMD64 architecture)
+- Easy-to-deploy using a Docker image
 
 ## Installation
 
-If you're planning to use SQLite, follow these steps:
+If you're planning to use SQLite (which I highly recommend), follow these steps:
 
 1. Create a new SQLite database -> `database.sqlite`
 2. Create a compose.yml file in the root directory of the project (example below)
