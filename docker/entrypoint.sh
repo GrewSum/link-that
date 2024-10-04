@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 php artisan config:cache
 php artisan optimize:clear
@@ -6,5 +7,8 @@ php artisan event:cache
 php artisan route:cache
 php artisan migrate --force
 
-# This will exec the CMD from your Dockerfile
-docker-php-entrypoint "$@"
+if [ "${1#-}" != "$1" ]; then
+	set -- php-fpm "$@"
+fi
+
+exec "$@"

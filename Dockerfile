@@ -31,8 +31,8 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY --from=build-env /app /app
 
-COPY docker/entrypoint.sh /entrypoint.sh
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
