@@ -5,6 +5,7 @@ return [
     'index.page_description' => 'Een lijst van tags om aan links toe te wijzen',
     'index.add_button' => 'Toevoegen',
     'index.edit_button' => 'Bewerken',
+    'index.assign_button' => 'Toewijzen',
     'index.delete_button' => 'Verwijderen',
     'index.links_count' => '(:count links)',
     'index.empty_title' => '(Nog) geen tags',
@@ -22,4 +23,7 @@ return [
     'update.color_label' => 'Kleur',
     'update.description_label' => 'Beschrijving',
     'update.description_help' => 'Waar is het voor?',
+    'assign.page_title' => 'Wijs :name toe aan links',
+    'assign.page_description' => 'Voeg toe aan of verwijder deze tag van meerdere links tegelijk.',
+    'assign.success' => 'Deze tag is succesvol aan de links toegewezen!',
 ];

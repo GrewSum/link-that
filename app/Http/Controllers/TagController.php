@@ -99,12 +99,6 @@ class TagController extends Controller
 
     public function destroy(Tag $tag)
     {
-        if ($tag->links->count() > 0) {
-            return redirect()
-                ->route('tags.index')
-                ->with('alert-danger', 'Tag has links, cannot be deleted!');
-        }
-
         $tag->delete();
 
         return redirect()

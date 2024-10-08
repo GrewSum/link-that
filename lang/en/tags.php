@@ -5,6 +5,7 @@ return [
     'index.page_description' => 'A list of tags to assign to links',
     'index.add_button' => 'Add',
     'index.edit_button' => 'Edit',
+    'index.assign_button' => 'Assign',
     'index.delete_button' => 'Delete',
     'index.links_count' => '(:count links)',
     'index.empty_title' => 'No tags (yet)',
@@ -22,4 +23,7 @@ return [
     'update.color_label' => 'Color',
     'update.description_label' => 'Description',
     'update.description_help' => 'What is it for?',
+    'assign.page_title' => 'Assign :name to links',
+    'assign.page_description' => 'Assign or unassign this tag to multiple links at once.',
+    'assign.success' => 'Successfully assigned the tag to the links!',
 ];
