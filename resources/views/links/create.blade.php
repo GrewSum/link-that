@@ -40,7 +40,7 @@
                     <div class="sm:col-span-4">
                         <label for="title" class="block text-sm font-medium leading-6 text-gray-900">{{__('links.create.title_label')}}</label>
                         <div class="mt-2">
-                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-emerald-600 sm:max-w-md">
+                            <div class="flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset focus-within:ring-emerald-600 sm:max-w-md {{$errors->has('url') ? 'ring-red-700' : 'ring-gray-300'}}">
                                 <input type="text"
                                        name="title"
                                        id="title"
@@ -49,12 +49,15 @@
                                        placeholder="Link That!">
                             </div>
                         </div>
+                        @error('title')
+                        <p class="mt-3 text-sm leading-6 text-red-700">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-4">
                         <label for="url" class="block text-sm font-medium leading-6 text-gray-900">{{__('links.create.url_label')}}</label>
                         <div class="mt-2">
-                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-emerald-600 sm:max-w-md">
+                            <div class="flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset focus-within:ring-emerald-600 sm:max-w-md {{$errors->has('url') ? 'ring-red-700' : 'ring-gray-300'}}">
                                 <input type="text"
                                        name="url"
                                        id="url"
@@ -63,7 +66,12 @@
                                        placeholder="https://link-that.com">
                             </div>
                         </div>
+                        @error('url')
+                        <p class="mt-3 text-sm leading-6 text-red-700">{{ $message }}</p>
+                        @enderror
                     </div>
+
+                    @foreach($errors as $error) {{$error}}@endforeach
 
                     <div class="col-span-full">
                         <label for="description" class="block text-sm font-medium leading-6 text-gray-900">{{__('links.create.description_label')}}</label>
@@ -71,10 +79,14 @@
                             <textarea id="description"
                                       name="description"
                                       rows="3"
-                                      class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
+                                      class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6 {{$errors->has('description') ? 'ring-red-700' : 'ring-gray-300'}}"
                             >{{old('description')}}</textarea>
                         </div>
-                        <p class="mt-3 text-sm leading-6 text-gray-600">{{__('links.create.description_help')}}</p>
+                        @error('description')
+                        <p class="mt-3 text-sm leading-6 text-red-700">{{ $message }}</p>
+                        @else
+                            <p class="mt-3 text-sm leading-6 text-gray-600">{{__('links.create.description_help')}}</p>
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-4">
