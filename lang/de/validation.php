@@ -35,7 +35,7 @@ return [
     'can' => 'Das Feld :attribute enthält einen nicht autorisierten Wert.',
     'confirmed' => 'Die Bestätigung des :attribute Felds stimmt nicht überein.',
     'current_password' => 'Das Passwort ist falsch.',
-    'date' => 'Das Feld :attribute muss ein gültiges Datum enthalten.'
+    'date' => 'Das Feld :attribute muss ein gültiges Datum enthalten.',
     'date_equals' => 'Das Feld :attribute muss ein Datum enthalten, das mit :date übereinstimmt.',
     'date_format' => 'Das Feld :attribute muss dem Format :format entsprechen.',
     'decimal' => 'Das :attribute Feld muss :decimal Dezimalstellen haben.',
